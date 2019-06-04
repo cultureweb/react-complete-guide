@@ -8,9 +8,9 @@ class App extends Component {
       <div className="App">
        <h1>Hi, i'm a React app</h1>
        <p>This is really working!</p>
-       <Person />
-       <Person />
-       <Person />
+       <Person name="Max" age="28"/>
+       <Person name="Manu" age="29">My Hobbies: Racing</Person>
+       <Person name="Stephanie" age="26"/>
       </div>
     );
     /**Voilà pourquoi JSX est si important car sans JSX, on farait ceci pour avoir le même resultat */
