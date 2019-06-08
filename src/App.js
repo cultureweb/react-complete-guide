@@ -40,9 +40,9 @@ export default class App extends Component {
       username: event.target.value
     })
   }
-  togglePersonHandler = () =>{
+  togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow})
+    this.setState({ showPersons: !doesShow })
   }
 
   render() {
@@ -53,15 +53,10 @@ export default class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
-    return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        <button
-          style={style}
-          onClick={() => this.togglePersonHandler()}>Switch Name</button>
-       { this.state.showPersons ? 
-         <div >
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div >
           <Person
             name={this.state.persons[0].name}
             age={this.state.persons[0].age} />
@@ -73,8 +68,17 @@ export default class App extends Component {
           <Person
             name={this.state.persons[2].name}
             age={this.state.persons[2].age} />
-          </div> : null
-        }
+        </div>
+      );
+    }
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        <button
+          style={style}
+          onClick={() => this.togglePersonHandler()}>Switch Name</button>
+      {persons}
 
         {/* <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
