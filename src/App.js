@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import Person from './Person/Person';
-import UserInput from './UserInput/UserInput'
-import UserOutput from './UserOutput/UserOutput.js'
+// import UserInput from './UserInput/UserInput'
+// import UserOutput from './UserOutput/UserOutput.js'
 
 export default class App extends Component {
   state = {
@@ -12,7 +12,8 @@ export default class App extends Component {
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 26 }
     ],
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons: false
   }
   switchNameHandler = (newName) => {
     // console.log('Was clicked!');
@@ -39,6 +40,11 @@ export default class App extends Component {
       username: event.target.value
     })
   }
+  togglePersonHandler = () =>{
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow})
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -53,19 +59,24 @@ export default class App extends Component {
         <p>This is really working!</p>
         <button
           style={style}
-          onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age} />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Max!')}
-          changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
-        <ol>
+          onClick={() => this.togglePersonHandler()}>Switch Name</button>
+       { this.state.showPersons ? 
+         <div >
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age} />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            click={this.switchNameHandler.bind(this, 'Max!')}
+            changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age} />
+          </div> : null
+        }
+
+        {/* <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
           <li>UserInput should hold an input element, UserOutput two paragraphs</li>
           <li>Output multiple UserOutput components in the App component (any paragraph texts of your choice)</li>
@@ -80,7 +91,7 @@ export default class App extends Component {
         <UserInput changed={this.inputChangeHandler} currentName={this.state.username} />
         <UserOutput userName ={this.state.username}/>
         <UserOutput userName={this.state.username} />
-        <UserOutput userName="Max"/>
+        <UserOutput userName="Max"/> */}
       </div>
     )
   }
