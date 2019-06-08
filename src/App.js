@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import Person from './Person/Person';
+import UserInput from './UserInput/UserInput'
+import UserOutput from './UserOutput/UserOutput.js'
 
-class App extends Component {
+export default class App extends Component {
   state = {
+    username: 'superman',
     persons: [
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
@@ -11,7 +14,6 @@ class App extends Component {
     ],
     otherState: 'some other value'
   }
-
   switchNameHandler = (newName) => {
     // console.log('Was clicked!');
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
@@ -23,7 +25,6 @@ class App extends Component {
       ]
     })
   }
-
   nameChangedHandler = (event) => {
     this.setState({
       persons: [
@@ -33,7 +34,11 @@ class App extends Component {
       ]
     })
   }
-
+  inputChangeHandler = (event) => {
+    this.setState({
+      username: event.target.value
+    })
+  }
   render() {
     const style = {
       backgroundColor: 'white',
@@ -42,15 +47,14 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
-
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button 
-        style={style}
-        onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
-        <Person 
+        <button
+          style={style}
+          onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
+        <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age} />
         <Person
@@ -61,62 +65,24 @@ class App extends Component {
         <Person
           name={this.state.persons[2].name}
           age={this.state.persons[2].age} />
+        <ol>
+          <li>Create TWO new components: UserInput and UserOutput</li>
+          <li>UserInput should hold an input element, UserOutput two paragraphs</li>
+          <li>Output multiple UserOutput components in the App component (any paragraph texts of your choice)</li>
+          <li>Pass a username (of your choice) to UserOutput via props and display it there</li>
+          <li>Add state to the App component (=> the username) and pass the username to the UserOutput component</li>
+          <li>Add a method to manipulate the state (=> an event-handler method)</li>
+          <li>Pass the event-handler method reference to the UserInput component and bind it to the input-change event</li>
+          <li>Ensure that the new input entered by the user overwrites the old username passed to UserOutput</li>
+          <li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>
+          <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
+        </ol>
+        <UserInput changed={this.inputChangeHandler} currentName={this.state.username} />
+        <UserOutput userName ={this.state.username}/>
+        <UserOutput userName={this.state.username} />
+        <UserOutput userName="Max"/>
       </div>
-    );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
+    )
   }
 }
 
-export default App;
-
-/*import React, { useState } from 'react';
-import './App.css';
-import Person from './Person/Person';
-
-
-const App = props => {
-  const [personState, setPersonState] = useState({
-    persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 26 }
-    ]
-  });
-
-  const [otherState, setOtherState] = useState('some other value');
-  console.log(personState, otherState);
-
-  const switchNameHandler = (newName) => {
-    setPersonState({
-      persons: [
-        { name: newName, age: 42 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 26 }
-      ],
-      otherState: personState.otherState
-    });
-  }
-  
-  return (
-    <div className="App">
-      <h1>Hi, i'm a React app</h1>
-      <p>This is really working!</p>
-      <button onClick={switchNameHandler.bind(this, 'cedric')}>Switch Name</button>
-      <Person
-        name={personState.persons[0].name}
-        age={personState.persons[0].age} />
-      <Person
-        name={personState.persons[1].name}
-        age={personState.persons[1].age}
-        click={this.switchNameHandler.bind('ced!')}>
-        My Hobbies: Racing</Person>
-      <Person
-        name={personState.persons[2].name}
-        age={personState.persons[2].age} />
-    </div>
-  
-  );
-}
-
-
-export default App;*/
