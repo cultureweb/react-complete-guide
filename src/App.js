@@ -42,9 +42,10 @@ export default class App extends Component {
   // }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons.slice();
-    persons.splice(personIndex, 1);
-    this.setState({ persons: persons });
+    // const persons = this.state.persons.slice();//MAKE A COPY
+    const persons = [...this.state.persons];//Spread Operator ES6 Features
+    persons.splice(personIndex, 1);// EDIT THIS TO NEW ONE
+    this.setState({ persons: persons });// UPDATE THE NEW ARRAY
   }
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
