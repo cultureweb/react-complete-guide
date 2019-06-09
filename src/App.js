@@ -42,9 +42,9 @@ export default class App extends Component {
   // }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    const persons = this.state.persons.slice();
     persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+    this.setState({ persons: persons });
   }
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
@@ -65,10 +65,10 @@ export default class App extends Component {
       persons = (
         <div >
           {this.state.persons.map((person, index) => {
-            return <Person 
-            click={() => this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age} />
+            return <Person
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age} />
           })}
         </div>
       );
@@ -80,7 +80,7 @@ export default class App extends Component {
         <button
           style={style}
           onClick={() => this.togglePersonHandler()}>Switch Name</button>
-      {persons}
+        {persons}
 
         {/* <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
