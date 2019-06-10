@@ -3,7 +3,6 @@ import './App.css'
 import Person from './Person/Person';
 import { isClassExpression } from '@babel/types';
 import { constants } from 'fs';
-import Radium, { StyleRoot } from 'radium';
 // import UserInput from './UserInput/UserInput'
 // import UserOutput from './UserOutput/UserOutput.js'
 
@@ -71,10 +70,7 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black',
-      }
+
     };
     let persons = null;
 
@@ -93,10 +89,7 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: '#fd826c',
-        color: 'black'
-      };
+
     }
 
     // let classes =['red', 'bold'].join(' '); // i will get "red bold"
@@ -109,13 +102,12 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
         <button
           style={style}
-          onClick={() => this.togglePersonHandler()}>Switch Name</button>
+          onClick={() => this.togglePersonHandler()}>Toggle Persons</button>
         {persons}
         {/* <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
@@ -134,9 +126,9 @@ class App extends Component {
         <UserOutput userName={this.state.username} />
         <UserOutput userName="Max"/> */}
       </div>
-      </StyleRoot>
+
     )
   }
 }
-export default Radium(App);
+export default App;
 
