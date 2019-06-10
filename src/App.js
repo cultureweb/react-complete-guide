@@ -1,62 +1,20 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import './App.css';
-=======
 import React, { Component } from 'react'
 import './App.css'
->>>>>>> 7a84e66481b6c8fdbb04ae33f49987ea0ca3b585
 import Person from './Person/Person';
 import { isClassExpression } from '@babel/types';
 import { constants } from 'fs';
+import Radium from 'radium';
 // import UserInput from './UserInput/UserInput'
 // import UserOutput from './UserOutput/UserOutput.js'
 
-<<<<<<< HEAD
-
- 
- const app = props =>{}
- const [ personState, setPersonsState ] = useState({
-=======
-export default class App extends Component {
+class App extends Component {
   state = {
     username: 'superman',
->>>>>>> 7a84e66481b6c8fdbb04ae33f49987ea0ca3b585
     persons: [
       { id: 'gfts', name: 'Max', age: 28 },
       { id: 'aszr', name: 'Manu', age: 29 },
       { id: 'kjkl', name: 'Stephanie', age: 26 }
     ],
-<<<<<<< HEAD
-    otherState: 'some other value'
-  });
-    return (
-      <div className="App">
-       <h1>Hi, i'm a React app</h1>
-       <p>This is really working!</p>
-       <button onClick={this.switchNameHandler}>Switch Name</button>
-       <Person 
-        name={personsState.persons[0].name} 
-        age={personsState.persons[0].age}
-        />
-       <Person 
-        name={personsState.persons[0].name} 
-        age={personsStatee.persons[0].age}
-        />
-       <Person 
-        name={personsState.persons[1].name} 
-        age={personsState.persons[1].age}>
-        My Hobbies: Racing
-        </Person>
-       <Person 
-        name={personsState.persons[2].name} 
-        age={personsState.persons[2].age}
-        />
-      </div>
-    );
-    
-    /**Voilà pourquoi JSX est si important car sans JSX, on farait ceci pour avoir le même resultat */
-    // return React.createElement('div',{className: 'App'}, React.createElement('h1', null,  'Does this work now ?'));
-=======
     otherState: 'some other value',
     showPersons: false
   }
@@ -112,7 +70,11 @@ export default class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black',
+      }
     };
     let persons = null;
 
@@ -131,6 +93,10 @@ export default class App extends Component {
       );
 
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'lightred',
+        color: 'black'
+      };
     }
 
    // let classes =['red', 'bold'].join(' '); // i will get "red bold"
@@ -150,7 +116,6 @@ export default class App extends Component {
           style={style}
           onClick={() => this.togglePersonHandler()}>Switch Name</button>
         {persons}
-
         {/* <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
           <li>UserInput should hold an input element, UserOutput two paragraphs</li>
@@ -169,25 +134,7 @@ export default class App extends Component {
         <UserOutput userName="Max"/> */}
       </div>
     )
->>>>>>> 7a84e66481b6c8fdbb04ae33f49987ea0ca3b585
   }
+}
+export default Radium(App);
 
-
-<<<<<<< HEAD
-export default App;
-
-
-
-  switchNameHandler = () => {
-    // console.log('Was clicked');
-    // DON'T DO THIS: this.state.persons[0].name = 'Cedric';
-    this.setState( {
-      persons: [
-      { name: 'Cedric', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 27 }
-    ]
-    })
-  }
-=======
->>>>>>> 7a84e66481b6c8fdbb04ae33f49987ea0ca3b585
