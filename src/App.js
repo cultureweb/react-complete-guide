@@ -3,7 +3,7 @@ import './App.css'
 import Person from './Person/Person';
 import { isClassExpression } from '@babel/types';
 import { constants } from 'fs';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 // import UserInput from './UserInput/UserInput'
 // import UserOutput from './UserOutput/UserOutput.js'
 
@@ -30,7 +30,7 @@ class App extends Component {
     })
   }
   nameChangedHandler = (event, id) => {
-    const personIndex=this.state.persons.findIndex(p => {
+    const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
 
@@ -39,7 +39,7 @@ class App extends Component {
     };
     //Alternative using Object.assign
     //const person = Object.assign({}, this.state.persons[personIndex]
-      
+
     person.name = event.target.value;
 
     const persons = [...this.state.persons];
@@ -86,7 +86,7 @@ class App extends Component {
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              key={person.id} 
+              key={person.id}
               changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
@@ -94,21 +94,22 @@ class App extends Component {
 
       style.backgroundColor = 'red';
       style[':hover'] = {
-        backgroundColor: 'lightred',
+        backgroundColor: '#fd826c',
         color: 'black'
       };
     }
 
-   // let classes =['red', 'bold'].join(' '); // i will get "red bold"
+    // let classes =['red', 'bold'].join(' '); // i will get "red bold"
     const classes = [];
-    if (this.state.persons.length <= 2){
+    if (this.state.persons.length <= 2) {
       classes.push('red');//classes = ['red']
     }
     if (this.state.persons.length <= 1) {
       classes.push('bold');//classes = ['red', 'bold']
     }
-    
+
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}>This is really working!</p>
@@ -133,6 +134,7 @@ class App extends Component {
         <UserOutput userName={this.state.username} />
         <UserOutput userName="Max"/> */}
       </div>
+      </StyleRoot>
     )
   }
 }
