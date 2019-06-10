@@ -1,0 +1,33 @@
+{
+  // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
+  // Pointez pour afficher la description des attributs existants.
+  // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "runtimeExecutable": "/usr/bin/chromium-browser",
+      "sourceMaps": true
+    },
+    // {
+    //   "type": "chrome",
+    //   "request": "launch",
+    //   "name": "Launch Chrome",
+    //   "url": "http://localhost:3000",
+    //   "webRoot": "${workspaceFolder}",
+    //   "runtimeExecutable": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+    // },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Lancer le programme",
+      "program": "${workspaceFolder}\\build\\src\\app.js",
+      "sourceMaps": true,
+      "preLaunchTask": "build"
+    }
+  ]
+}
