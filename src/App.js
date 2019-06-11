@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import classes from './App.css'
 import Person from './Person/Person';
-import { isClassExpression } from '@babel/types';
-import { constants } from 'fs';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+// import { isClassExpression } from '@babel/types';
+// import { constants } from 'fs';
 // import UserInput from './UserInput/UserInput'
 // import UserOutput from './UserOutput/UserOutput.js'
 
@@ -71,12 +72,13 @@ class App extends Component {
       persons = (
         <div >
           {this.state.persons.map((person, index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)} />
+            return <ErrorBoundary key={person.id}>
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}  
+                changed={(event) => this.nameChangedHandler(event, person.id)} /> 
+              </ErrorBoundary>
           })}
         </div>
       );
