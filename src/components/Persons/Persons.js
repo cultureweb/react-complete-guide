@@ -16,16 +16,18 @@ class Persons extends Component {
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate');
-        return { message: 'Snapshot!'};
+        return { message: 'Snapshot!' };
     }
     // componentWillUpdate(){
     // }
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log('[Persons.js] componentDidUpdate');
         console.log(snapshot);
-        
     }
+    componentWillUnmount() {
+        console.log('[Persons.js] componentWillUnmount');
 
+    }
     render() {
         console.log('[Persons.js] rendering...');
         return this.props.persons.map((person, index) => {
